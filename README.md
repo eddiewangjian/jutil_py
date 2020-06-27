@@ -7,6 +7,7 @@ pip3 install configparser   # common_conf
 pip3 install logging        # common_log
 pip3 install requests       # common_http
 pip3 install pymysql        # common_mysql
+pip3 install matplotlib     # common_plot
 ```
 
 ## QuickStart
@@ -126,7 +127,7 @@ Log.critical("critical log")
 # data: dict格式data,请求时会自动转为json的data
 # headers: dict格式的请求headers
 # timeout: 超时秒数
-# return: 元组(status_code, return_text如果为josn会自动转为dict) 
+# return: 元组(status_code, return_text如果为josn会自动转为dict)
 res = Http.request(request_type="post", url="http://cgi.slightheat.com:8002/abc.AiBrainService/echo", params={}, data={"message": "hello"}, headers={'Content-Type': 'text/plain'}, timeout=3)
 ```
 
@@ -145,7 +146,35 @@ res = Http.request(request_type="post", url="http://cgi.slightheat.com:8002/abc.
 res = Mysql.query("127.0.0.1", 3306, "db_name", "work", "passwd@123", "select * from user_info")
 ```
 
+### common_plot模块
+<strong>- 功能：绘制图片类库封装</strong>
 
+<strong>- 使用说明：</strong>
+```
+# 绘制曲线到图片中
+# x_data: x轴数据列表
+# y_data: y轴数据列表(x_data与y_data需要等长)
+# file_path: 保存的图片文件路径
+# file_format: 图片格式
+# title: 图片内部的名称
+# x_name: x轴名称
+# y_name: y轴名称
+# line_style: 曲线的形状
+# marker: 采样点的形状
+# color: 曲线颜色
 
+# 静态函数用于绘制单个曲线到图片
+xData = [0, 1, 2, 3, 4, 5]
+yData1 = [0, 2, 4, 6, 8, 10]
+yData2 = [0, 3, 6, 9, 12, 15]
+Plot.single_plot(xData, yData1, file_path="./example/single_plot.png", file_format="png", title='result', x_name='x-axis', y_name='y-axis', line_style='--', marker='.', color='b')
+
+# 使用实例在一张图中打印多条曲线
+pt = Plot()
+pt.reset()
+pt.add_line(xData, yData1, 'func1', line_style='-', marker='.', color='b')
+pt.add_line(xData, yData2, 'func2', line_style='--', marker='o', color='r')
+pt.multi_plot(file_path='./example/multi_plot.png', file_format='png', title='result', x_name='x-axis', y_name='y-axis')
+```
 
 
