@@ -11,6 +11,12 @@ pip3 install matplotlib     # common_plot
 ```
 
 ## QuickStart
+```
+# 将jutil_py作为子模块直接引用即可使用,调用函数详见API Document
+from jutil_py.common_xxx import XXX
+```
+
+## API Document
 ### common_conf模块
 <strong>- 功能：管理系统session配置</strong>
 
