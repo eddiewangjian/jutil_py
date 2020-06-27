@@ -7,9 +7,9 @@ pip3 install configparser #common_conf
 
 ## QuickStart
 ### common_conf模块
-<strong>功能：管理系统session配置</strong>
+<strong>- 功能：管理系统session配置</strong>
 
-<strong>配置格式说明：</strong>
+<strong>- 配置格式说明：</strong>
 1. 配置文件中，分为section和item两级，配置文件格式如下：
 ```
 # 配置文件demo.conf
@@ -47,7 +47,7 @@ GLOBAL_CONF = {
     }
 }
 ```
-<strong>类库使用说明：</strong>
+<strong>- 类库使用说明：</strong>
 1. ConfMgr类用于读取配置文件中的信息。初始化实例时指定根目录，可通过绝对路径或相对根路径，解析整个配置为dict格式；也支持读取配置文件中的一个item
 ```
 # 初始化配置管理,根目录设置为当前文件所在路径
