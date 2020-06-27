@@ -2,8 +2,12 @@
 python公共util库,封装通用的错误码、log、配置、检查宏命令、数据库访问、可视化出图、通用编解码、通用系统操作
 
 ## Deploy
-pip3 install configparser   #common_conf
-pip3 install logging        #common_log
+```
+pip3 install configparser   # common_conf
+pip3 install logging        # common_log
+pip3 install requests       # common_http
+pip3 install pymysql        # common_mysql
+```
 
 ## QuickStart
 ### common_conf模块
@@ -109,4 +113,39 @@ Log.warning("warning log")
 Log.error("error log")
 Log.critical("critical log")
 ```
+
+### common_http模块
+<strong>- 功能：静态类封装http的get/post/put/delete请求</strong>
+
+<strong>- 使用说明：</strong>
+```
+# 发送一个http请求
+# request_type: 请求类型(get/post/put/delete)
+# url: 请求url
+# params: dict格参数,追加于url的参数
+# data: dict格式data,请求时会自动转为json的data
+# headers: dict格式的请求headers
+# timeout: 超时秒数
+# return: 元组(status_code, return_text如果为josn会自动转为dict) 
+res = Http.request(request_type="post", url="http://cgi.slightheat.com:8002/abc.AiBrainService/echo", params={}, data={"message": "hello"}, headers={'Content-Type': 'text/plain'}, timeout=3)
+```
+
+### common_mysql模块
+<strong>- 功能：静态类封装mysql的一次single连接请求</strong>
+
+<strong>- 使用说明：</strong>
+```
+# 发送一个单连接mysql请求
+# host: mysql服务的host
+# port: mysql服务的端口
+# db: 连接的数据库
+# user: mysql用户名
+# passwd: mysql密码
+# sql: 数据库sql请求
+res = Mysql.query("127.0.0.1", 3306, "db_name", "work", "passwd@123", "select * from user_info")
+```
+
+
+
+
 
