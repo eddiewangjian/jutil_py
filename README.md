@@ -8,6 +8,7 @@ pip3 install configparser #common_conf
 ## QuickStart
 ### common_conf模块
 <strong>功能：管理系统session配置</strong>
+
 <strong>配置格式说明：</strong>
 1. 配置文件中，分为section和item两级，配置文件格式如下：
 ```
