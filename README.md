@@ -61,6 +61,8 @@ GLOBAL_CONF = {
 <strong>- 类库使用说明：</strong>
 1. ConfMgr静态类用于读取配置文件中的信息。可指定根目录,并通过绝对路径或相对根路径,解析整个配置为dict格式;也支持读取配置文件中的一个item
 ```
+import jutil_py.common_conf import ConfMgr
+
 # 初始化配置管理,根目录设置为当前文件所在路径
 this_file_path = os.path.dirname(os.path.abspath(__file__))
 ConfMgr.set_root_path(this_file_path)
@@ -76,6 +78,8 @@ res = ConfMgr.get_value_float("example_conf_file.conf", "section_name", "key_nam
 ```
 2. GlobalConf静态类用于管理配置驻留内存的结构。背后依赖一个GLOBAL_DICT全局dict变量,分为conf/section/item三层,每个item为一个key-value
 ```
+import jutil_py.common_conf import GlobalConf
+
 # 内存全局配置设置
 GlobalConf.set_item("conf_name1", "session_name1", "key1", value1)
 # 通过配置文件初始化内存全局配置中的一个conf
@@ -105,6 +109,7 @@ GlobalConf.clear_all()
 <strong>- 使用说明：</strong>
 ```
 # 【注意】系统在引用common_log模块后，会默认初始化stdout模式，以保证日志至少可输出到stdout
+import jutil_py.common_log import Log
 
 # 初始化一个stdout日志
 # log_type: 日志类型(stdout:只打印到stdout;file:只打印到文件;stdout_and_file/file_and_stdout:同时打印到stdout和文件)
@@ -126,6 +131,8 @@ Log.critical("critical log")
 
 <strong>- 使用说明：</strong>
 ```
+import jutil_py.common_http import Http
+
 # 发送一个http请求
 # request_type: 请求类型(get/post/put/delete)
 # url: 请求url
@@ -142,6 +149,8 @@ res = Http.request(request_type="post", url="http://cgi.slightheat.com:8002/abc.
 
 <strong>- 使用说明：</strong>
 ```
+import jutil_py.common_mysql import Mysql
+
 # 发送一个单连接mysql请求
 # host: mysql服务的host
 # port: mysql服务的端口
@@ -157,6 +166,8 @@ res = Mysql.query("127.0.0.1", 3306, "db_name", "work", "passwd@123", "select * 
 
 <strong>- 使用说明：</strong>
 ```
+import jutil_py.common_plot import Plot
+
 # 绘制曲线到图片中
 # x_data: x轴数据列表
 # y_data: y轴数据列表(x_data与y_data需要等长)
