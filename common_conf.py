@@ -12,31 +12,31 @@ global GLOBAL_CONF
 GLOBAL_CONF = {}
 
 class ConfMgr:
-    """
+    '''
     完成conf配置文件的读取和解析
-    """
+    '''
 
     @staticmethod
     def set_root_path(root_path):
-        """
+        '''
         初始化时配置根目录
-        """
+        '''
         global ROOT_PATH
         ROOT_PATH = root_path
 
     @staticmethod
     def get_root_path():
-        """
+        '''
         返回根目录
-        """
+        '''
         return ROOT_PATH
 
     @staticmethod
     def parse_conf(conf_path):
-        """
+        '''
         function: 根据读取绝对路径或相对根路径，解析配置文件为section/item两层dict
         conf_path: 配置文件相对根路径或绝对路径
-        """
+        '''
         if len(conf_path) > 0 and conf_path[0] != '/':
             conf_path = ROOT_PATH + "/" + conf_path
             #print("conf_path={}".format(conf_path))
@@ -60,14 +60,14 @@ class ConfMgr:
 
     @staticmethod
     def get_value_str(conf_path, section, key, default_value=None):
-        """
+        '''
         function: 实时读取配置文件,返回str格式的配置value
         conf_path: 配置文件相对根路径或绝对路径
         section: 配置文件的分段名
         key: section内的配置key
         default_value: 不存在或者异常时返回默认值,缺省为None
         return: str格式的配置value
-        """
+        '''
         if len(conf_path) > 0 and conf_path[0] != '/':
             conf_path = ROOT_PATH + "/" + conf_path
             #print("conf_path={}".format(conf_path))
@@ -86,14 +86,14 @@ class ConfMgr:
 
     @staticmethod
     def get_value_int(conf_path, section, key, default_value=None):
-        """
+        '''
         function: 实时读取配置文件,返回int格式的配置value
         conf_path: 配置文件相对根路径或绝对路径
         section: 配置文件的分段名
         key: section内的配置key
         default_value: 不存在或者异常时返回默认值,缺省为None
         return: int格式的配置value
-        """
+        '''
         value_str = ConfMgr.get_value_str(conf_path, section, key)
         if value_str is None:
             return default_value
@@ -109,14 +109,14 @@ class ConfMgr:
      
     @staticmethod
     def get_value_float(conf_path, section, key, default_value=None):
-        """
+        '''
         function: 实时读取配置文件,返回float格式的配置value
         conf_path: 配置文件相对根路径或绝对路径
         section: 配置文件的分段名
         key: section内的配置key
         default_value: 不存在或者异常时返回默认值,缺省为None
         return: float格式的配置value
-        """
+        '''
         value_str = ConfMgr.get_value_str(conf_path, section, key)
         if value_str is None:
             return default_value
@@ -131,19 +131,19 @@ class ConfMgr:
             return default_value
  
 class GlobalConf:
-    """
+    '''
     支持dict结构全局配置,分成conf/section/item共3个级别,每个item是一个key-value对
-    """
+    '''
 
     @staticmethod
     def set_item(conf_name, section_name, key, value):
-        """
+        '''
         function: 设置一个全局item
         conf_name: item所在的conf名称
         section_name: item所在的section名称
         key: item的键
         value: 为item赋值
-        """
+        '''
         if conf_name not in GLOBAL_CONF:
             GLOBAL_CONF[conf_name] = {}
         if section_name not in GLOBAL_CONF[conf_name]:
@@ -153,13 +153,13 @@ class GlobalConf:
     # 获得一个全局变量,不存在则返回默认值
     @staticmethod
     def get_item(conf_name, section_name, key, default_value=None):
-        """
+        '''
         function: 获取全局配置中指定item的值
         conf_name: item所在的conf名称
         section_name: item所在的section名称
         key: item的键
         default_value: 取值失败时返回值
-        """
+        '''
         try:
             return GLOBAL_CONF[conf_name][section_name][key]
         except KeyError:
@@ -167,12 +167,12 @@ class GlobalConf:
 
     @staticmethod
     def clear_item(conf_name, section_name, key):
-        """
+        '''
         function: 删除全局配置中指定的item
         conf_name: item所在的conf名称
         section_name: item所在的section名称
         key: item的键
-        """
+        '''
         if conf_name in GLOBAL_CONF:
             if section_name in GLOBAL_CONF[conf_name]:
                 if key in GLOBAL_CONF[conf_name][section_name]:
@@ -180,43 +180,43 @@ class GlobalConf:
 
     @staticmethod
     def set_conf(conf_name, conf_dict):
-        """
+        '''
         function: 为全局配置中设置一个conf
         conf_name: conf的名称
         conf_dict: 参数需要满足section和item两层结构,且item为key-vaue结构,该值可由ConfMgr通过parse_conf获取
-        """
+        '''
         GLOBAL_CONF[conf_name] = conf_dict
 
     @staticmethod
     def get_conf(conf_name):
-        """
+        '''
         function: 获取全局配置中指定的conf
         conf_name: conf名称
-        """
+        '''
         if conf_name in GLOBAL_CONF:
             return GLOBAL_CONF[conf_name]
         return None
         
     @staticmethod
     def clear_conf(conf_name):
-        """
+        '''
         function: 清空全局变量中指定的conf配置
-        """
+        '''
         if conf_name in GLOBAL_CONF:
             del GLOBAL_CONF[conf_name]
 
     @staticmethod
     def get_all():
-        """
+        '''
         function: 获取全局变量中所有conf配置
-        """
+        '''
         return GLOBAL_CONF
         
     @staticmethod
     def clear_all():
-        """
+        '''
         function: 清空全局变量中所有conf配置
-        """
+        '''
         GLOBAL_CONF.clear()
 
            

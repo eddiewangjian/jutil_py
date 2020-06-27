@@ -15,14 +15,14 @@ class Log:
 
     @staticmethod
     def init(log_type="stdout", log_path="", log_level=10, log_format="[%(asctime)s][%(levelname)s]%(message)s"):
-        """
+        '''
         function: 初始化日志
         log_type: 日志类型(stdout:只打印到stdout;file:只打印到文件;stdout_and_file/file_and_stdout:同时打印到stdout和文件)
         log_path: 日志文件路径,在log_type等于stdout不试用此参数
         log_level: 日志级别(DEBUG:10;INFO:20;WARNING:30;ERROR:40;CRITICAL:50),会打印大于等于当前数值的各级日志
         log_format: 日志打印格式,如[%(asctime)s][%(levelname)s]%(message)s
         return: common_code
-        """
+        '''
         
         # 初始化logger
         logger = logging.getLogger(__name__)
@@ -51,12 +51,12 @@ class Log:
 
     @staticmethod
     def init_stdout_logger(log_level, log_format, is_append):
-        """
+        '''
         function: 初始化函数用于打印到stdout,不同于init的主动调用,次函数会被默认执行以保证日志在任何时候可输出
         log_level: 日志级别(DEBUG:10;INFO:20;WARNING:30;ERROR:40;CRITICAL:50),会打印大于等于当前数值的各级日志
         log_format: 日志打印格式,如[%(asctime)s][%(levelname)s]%(message)s
         is_append: True:追加一种日志打印方式(一般用于同时向多文件和stdout打印);False:替换现有的打印方式
-        """
+        '''
         try:
             # 初始化logger
             logger = logging.getLogger(__name__)
@@ -96,14 +96,14 @@ class Log:
 
     @staticmethod
     def init_file_logger(log_path, log_level, log_format, is_append):
-        """
+        '''
         function: 写入文件的log初始化
         log_path: 日志写文件路径
         log_level: 日志级别(DEBUG:10;INFO:20;WARNING:30;ERROR:40;CRITICAL:50),会打印大于等于当前数值的各级日志
         log_format: 日志打印格式,如[%(asctime)s][%(levelname)s]%(message)s
         is_append: True:追加一种日志打印方式(一般用于同时向多文件和stdout打印);False:替换现有的打印方式
         return: common_code
-        """
+        '''
         try:
             # 初始化logger
             logger = logging.getLogger(__name__)
@@ -148,41 +148,41 @@ class Log:
 
     @staticmethod
     def debug(msg):
-        """
+        '''
         function: 打印debug日志
-        """
+        '''
         logging.getLogger(__name__).debug(msg)
         return
 
     @staticmethod
     def info(msg):
-        """
+        '''
         function: 打印info日志
-        """
+        '''
         logging.getLogger(__name__).info(msg)
         return
 
     @staticmethod
     def warning(msg):
-        """
+        '''
         function: 打印warning日志
-        """
+        '''
         logging.getLogger(__name__).warning(msg)
         return
 
     @staticmethod
     def error(msg):
-        """
+        '''
         function: 打印error日志
-        """
+        '''
         logging.getLogger(__name__).error(msg)
         return
 
     @staticmethod
     def critical(msg):
-        """
+        '''
         function: 打印critical日志
-        """
+        '''
         logging.getLogger(__name__).critical(msg)
         return
 
